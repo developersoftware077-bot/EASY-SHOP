@@ -115,13 +115,6 @@ function ProductPage() {
       document.head.append(description);
     }
     description.setAttribute("content", p.seo_description || p.short_description || p.description);
-    let canonical = document.querySelector('link[rel="canonical"]');
-    if (!canonical) {
-      canonical = document.createElement("link");
-      canonical.setAttribute("rel", "canonical");
-      document.head.append(canonical);
-    }
-    canonical.setAttribute("href", window.location.href.split("?")[0]);
   }, [p]);
   if (isLoading)
     return (
