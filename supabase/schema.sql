@@ -37,7 +37,8 @@ create policy "Admins upload product images" on storage.objects for insert to au
 create policy "Admins update product images" on storage.objects for update to authenticated using(bucket_id='product-images' and public.has_role(auth.uid(),'admin')) with check(bucket_id='product-images' and public.has_role(auth.uid(),'admin'));
 create policy "Admins delete product images" on storage.objects for delete to authenticated using(bucket_id='product-images' and public.has_role(auth.uid(),'admin'));
 
-revoke all on public.orders,public.order_items from anon,authenticated;
+revoke all on public.profiles,public.user_roles,public.categories,public.products,public.product_images,public.orders,public.order_items,public.settings from anon;
+revoke all on public.orders,public.order_items from authenticated;
 grant select on public.categories,public.products,public.product_images,public.settings to anon,authenticated;
 grant all on public.categories,public.products,public.product_images,public.settings to authenticated;
 grant select on public.profiles,public.user_roles to authenticated;
